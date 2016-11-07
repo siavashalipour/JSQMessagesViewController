@@ -13,7 +13,7 @@ import JSQMessagesViewController
 
 class ChatViewControllerTests: XCTestCase {
     
-    let changeSetting = NSUserDefaults.standardUserDefaults().setBool
+    let changeSetting = UserDefaults.standard.set(_:forKey:)
     let chatViewController = ChatViewController()
     
     override func setUp() {
@@ -38,7 +38,7 @@ class ChatViewControllerTests: XCTestCase {
         let text = "Testing text"
         let senderId = self.chatViewController.senderId()
         let senderDisplayName = self.chatViewController.senderDisplayName()
-        let date = NSDate()
+        let date = Date()
         
         let originalCount = self.chatViewController.messages.count
         
@@ -129,7 +129,7 @@ class ChatViewControllerTests: XCTestCase {
         
         // trigger action
         let rightBarButton = self.chatViewController.navigationItem.rightBarButtonItem!
-        rightBarButton.target!.performSelector(rightBarButton.action, withObject: rightBarButton)
+        rightBarButton.target!.perform(rightBarButton.action, with: rightBarButton)
         
         let lastMessage = self.chatViewController.messages.last!
         
@@ -138,7 +138,7 @@ class ChatViewControllerTests: XCTestCase {
         XCTAssert(lastMessage.senderDisplayName != self.chatViewController.senderDisplayName())
         
         // triger action
-        rightBarButton.target!.performSelector(rightBarButton.action, withObject: rightBarButton)
+        rightBarButton.target!.perform(rightBarButton.action, with: rightBarButton)
         
         let newMessage = self.chatViewController.messages.last!
         
@@ -161,7 +161,7 @@ class ChatViewControllerTests: XCTestCase {
         
         // trigger action
         let rightBarButton = self.chatViewController.navigationItem.rightBarButtonItem!
-        rightBarButton.target!.performSelector(rightBarButton.action, withObject: rightBarButton)
+        rightBarButton.target!.perform(rightBarButton.action, with: rightBarButton)
         
         let newMessage = self.chatViewController.messages.last!
         
@@ -184,7 +184,7 @@ class ChatViewControllerTests: XCTestCase {
         
         // trigger action
         let rightBarButton = self.chatViewController.navigationItem.rightBarButtonItem!
-        rightBarButton.target!.performSelector(rightBarButton.action, withObject: rightBarButton)
+        rightBarButton.target!.perform(rightBarButton.action, with: rightBarButton)
         
         let newMessage = self.chatViewController.messages.last!
         
@@ -207,9 +207,9 @@ class ChatViewControllerTests: XCTestCase {
         let _ = chatViewController.view
         
         let button = self.chatViewController.inputToolbar.sendButtonOnRight ? self.chatViewController.inputToolbar.contentView!.rightBarButtonItem! : self.chatViewController.inputToolbar.contentView!.leftBarButtonItem!
-        self.chatViewController.didPressSendButton(button, withMessageText: "Testing Text", senderId: chatViewController.senderId(), senderDisplayName: chatViewController.senderDisplayName(), date: NSDate())
+        self.chatViewController.didPressSendButton(button, withMessageText: "Testing Text", senderId: chatViewController.senderId(), senderDisplayName: chatViewController.senderDisplayName(), date: Date())
         
-        let senderDisplayName = chatViewController.collectionView(self.chatViewController.collectionView!, attributedTextForMessageBubbleTopLabelAtIndexPath: NSIndexPath(forItem: self.chatViewController.messages.count - 1, inSection: 0))
+        let senderDisplayName = chatViewController.collectionView(self.chatViewController.collectionView!, attributedTextForMessageBubbleTopLabelAt: IndexPath(item: self.chatViewController.messages.count - 1, section: 0))
         XCTAssertNotNil(senderDisplayName, "Sender Display should not be nil")
 
     }
@@ -219,9 +219,9 @@ class ChatViewControllerTests: XCTestCase {
         let _ = chatViewController.view
         
         let button = self.chatViewController.inputToolbar.sendButtonOnRight ? self.chatViewController.inputToolbar.contentView!.rightBarButtonItem! : self.chatViewController.inputToolbar.contentView!.leftBarButtonItem!
-        self.chatViewController.didPressSendButton(button, withMessageText: "Testing Text", senderId: chatViewController.senderId(), senderDisplayName: chatViewController.senderDisplayName(), date: NSDate())
+        self.chatViewController.didPressSendButton(button, withMessageText: "Testing Text", senderId: chatViewController.senderId(), senderDisplayName: chatViewController.senderDisplayName(), date: Date())
         
-        XCTAssertNil(chatViewController.collectionView(self.chatViewController.collectionView!, attributedTextForMessageBubbleTopLabelAtIndexPath: NSIndexPath(forItem: self.chatViewController.messages.count - 1, inSection: 0)), "Sender Display should be nil")
+        XCTAssertNil(chatViewController.collectionView(self.chatViewController.collectionView!, attributedTextForMessageBubbleTopLabelAt: IndexPath(item: self.chatViewController.messages.count - 1, section: 0)), "Sender Display should be nil")
         
     }
     

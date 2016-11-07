@@ -142,6 +142,12 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(jsq_handleTapGesture:)];
     [self addGestureRecognizer:tap];
     self.tapGestureRecognizer = tap;
+    
+    // Add shadow to the bubble container
+    self.messageBubbleContainerView.layer.shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.8].CGColor;
+    self.messageBubbleContainerView.layer.shadowOpacity = 0.8;
+    self.messageBubbleContainerView.layer.shadowOffset = CGSizeZero;
+    self.messageBubbleContainerView.layer.shadowRadius = 1;
 }
 
 - (void)configureAccessoryButton

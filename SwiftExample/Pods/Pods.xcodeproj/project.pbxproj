@@ -58,6 +58,7 @@
 		76A7469A8CC7AA4E71935F49DA02D91B /* JSQMessagesCollectionViewFlowLayoutInvalidationContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C5E27903DA2690AF3381606582325D1 /* JSQMessagesCollectionViewFlowLayoutInvalidationContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7772024265D92D6412694019423F801C /* JSQMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBC221A7F5EA869AABD19B4DBA4794A3 /* JSQMessagesViewController.m */; };
 		7ADBA442C9BCC7F8EC3A0FBBA607E756 /* JSQAudioMediaViewAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 181EC36DD60BF893E063F12833392833 /* JSQAudioMediaViewAttributes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7C7119581DD06EDF006446F3 /* EmojiString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7119571DD06EDF006446F3 /* EmojiString.swift */; };
 		7D4C9DD82DE39240C76624031C3DCADE /* JSQMessagesCollectionViewCellOutgoing.h in Headers */ = {isa = PBXBuildFile; fileRef = 45D48AC1E79D5721C30FA3231CB3B13B /* JSQMessagesCollectionViewCellOutgoing.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7F833206585AFA3C76D2CA6468F08C4C /* JSQMessagesComposerTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D24203D45F99479F6F517E995BB95D8 /* JSQMessagesComposerTextView.m */; };
 		83FCD6BA1C85F35E81EAC5A114A1711C /* Pods-SwiftExampleTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 78B5DD2C75F208278D9E7C69E207EB84 /* Pods-SwiftExampleTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -187,6 +188,7 @@
 		76633CAF877874C0C5EDCAE536B689A2 /* JSQPhotoMediaItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JSQPhotoMediaItem.h; sourceTree = "<group>"; };
 		7811EEFD769234A5BE01FC929C1E16E2 /* JSQMessageMediaData.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JSQMessageMediaData.h; sourceTree = "<group>"; };
 		78B5DD2C75F208278D9E7C69E207EB84 /* Pods-SwiftExampleTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SwiftExampleTests-umbrella.h"; sourceTree = "<group>"; };
+		7C7119571DD06EDF006446F3 /* EmojiString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiString.swift; sourceTree = "<group>"; };
 		7DADDDF43426A194DE729EB043B05B40 /* JSQAudioMediaItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = JSQAudioMediaItem.m; sourceTree = "<group>"; };
 		836783FE72029591ED844FA76BB6E28E /* JSQMessagesBubbleImageFactory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JSQMessagesBubbleImageFactory.h; sourceTree = "<group>"; };
 		8518A94198081D09F20092C6ED6D0ECE /* JSQMessagesViewController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JSQMessagesViewController-umbrella.h"; sourceTree = "<group>"; };
@@ -557,6 +559,7 @@
 			isa = PBXGroup;
 			children = (
 				E007153261CE1297038828333F02E491 /* JSQMessages.h */,
+				7C7119571DD06EDF006446F3 /* EmojiString.swift */,
 				877018D6D26A7807A73C9312B0D91693 /* Categories */,
 				1A18684CEE804EFBEC9A8BD22FC3B7C4 /* Controllers */,
 				6F169D9482A08C82540763A9A9E323C7 /* Factories */,
@@ -738,6 +741,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0700;
+				TargetAttributes = {
+					F4652DD49CBC129355726E669F81872C = {
+						LastSwiftMigration = 0810;
+					};
+				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -825,6 +833,7 @@
 				A8107F45AA5D54B548D64490E09DCE76 /* JSQMessagesToolbarContentView.m in Sources */,
 				C36557885745FB505AD57EF65EC4538F /* JSQMessagesTypingIndicatorFooterView.m in Sources */,
 				6DB64D96EE290E26615F277C26FB8BDD /* JSQMessagesTypingView.m in Sources */,
+				7C7119581DD06EDF006446F3 /* EmojiString.swift in Sources */,
 				4D95177D6F2A51F045425E260D7D083D /* JSQMessagesViewController-dummy.m in Sources */,
 				7772024265D92D6412694019423F801C /* JSQMessagesViewController.m in Sources */,
 				51D1C525F7C4969E543A01CD17D44565 /* JSQPhotoMediaItem.m in Sources */,
@@ -934,6 +943,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4589B4FCDB9057D5AB4780BBF1161600 /* JSQMessagesViewController.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -953,6 +963,8 @@
 				PRODUCT_NAME = JSQMessagesViewController;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1100,6 +1112,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4589B4FCDB9057D5AB4780BBF1161600 /* JSQMessagesViewController.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1119,6 +1132,7 @@
 				PRODUCT_NAME = JSQMessagesViewController;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";

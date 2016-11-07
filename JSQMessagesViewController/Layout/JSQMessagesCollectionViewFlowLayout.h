@@ -103,7 +103,10 @@ NS_ASSUME_NONNULL_BEGIN
  *  @discussion The default value is the preferred system font for `UIFontTextStyleBody`. This value must not be `nil`.
  */
 @property (strong, nonatomic) UIFont *messageBubbleFont;
-
+/**
+ * This hides the bubble for Emojis and also tells the container to remove the shadow for emojis
+ */
+@property (assign, nonatomic) BOOL hideBubble;
 /**
  *  The horizontal spacing used to lay out the `messageBubbleContainerView` frame within each `JSQMessagesCollectionViewCell`.
  *  This container view holds the message bubble image and message contents of a cell.

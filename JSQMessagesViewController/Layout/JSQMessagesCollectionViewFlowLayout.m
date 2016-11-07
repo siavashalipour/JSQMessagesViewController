@@ -33,7 +33,7 @@
 #import "JSQMessagesBubblesSizeCalculator.h"
 
 #import "UIImage+JSQMessages.h"
-
+#import "JSQMessagesViewController-Swift.h"
 
 const CGFloat kJSQMessagesCollectionViewCellLabelHeightDefault = 20.0f;
 const CGFloat kJSQMessagesCollectionViewAvatarSizeDefault = 30.0f;
@@ -65,7 +65,7 @@ const CGFloat kJSQMessagesCollectionViewAvatarSizeDefault = 30.0f;
     self.minimumLineSpacing = 4.0f;
     
     _messageBubbleFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-    
+    _hideBubble = NO;
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         _messageBubbleLeftRightMargin = 240.0f;
     }
@@ -157,7 +157,10 @@ const CGFloat kJSQMessagesCollectionViewAvatarSizeDefault = 30.0f;
     _messageBubbleFont = messageBubbleFont;
     [self invalidateLayoutWithContext:[JSQMessagesCollectionViewFlowLayoutInvalidationContext context]];
 }
-
+- (void)setHideBubble:(BOOL)hideBubble {
+    _hideBubble = hideBubble;
+    [self invalidateLayoutWithContext:[JSQMessagesCollectionViewFlowLayoutInvalidationContext context]];
+}
 - (void)setMessageBubbleLeftRightMargin:(CGFloat)messageBubbleLeftRightMargin
 {
     NSParameterAssert(messageBubbleLeftRightMargin >= 0.0f);
@@ -223,7 +226,7 @@ const CGFloat kJSQMessagesCollectionViewAvatarSizeDefault = 30.0f;
     if (_bubbleSizeCalculator == nil) {
         _bubbleSizeCalculator = [JSQMessagesBubblesSizeCalculator new];
     }
-
+    
     return _bubbleSizeCalculator;
 }
 
@@ -406,7 +409,18 @@ const CGFloat kJSQMessagesCollectionViewAvatarSizeDefault = 30.0f;
 {
     id<JSQMessageData> messageItem = [self.collectionView.dataSource collectionView:self.collectionView
                                                       messageDataForItemAtIndexPath:indexPath];
-
+    NSString *s = [messageItem text];
+    if ([EmojiDetector isOnlyEmoji:s]) {
+        _messageBubbleFont = [UIFont systemFontOfSize:55 weight:2];
+        _hideBubble = YES;
+        
+    } else {
+        _messageBubbleFont = [UIFont systemFontOfSize:12];
+        _hideBubble = NO;
+    }
+    if ([messageItem isMediaMessage]) {
+        _hideBubble = NO;
+    }
     return [self.bubbleSizeCalculator messageBubbleSizeForMessageData:messageItem
                                                           atIndexPath:indexPath
                                                            withLayout:self];
@@ -438,7 +452,7 @@ const CGFloat kJSQMessagesCollectionViewAvatarSizeDefault = 30.0f;
     layoutAttributes.textViewTextContainerInsets = self.messageBubbleTextViewTextContainerInsets;
     
     layoutAttributes.messageBubbleFont = self.messageBubbleFont;
-    
+    layoutAttributes.hideBubble = self.hideBubble;
     layoutAttributes.incomingAvatarViewSize = self.incomingAvatarViewSize;
     
     layoutAttributes.outgoingAvatarViewSize = self.outgoingAvatarViewSize;
@@ -466,8 +480,8 @@ const CGFloat kJSQMessagesCollectionViewAvatarSizeDefault = 30.0f;
     }
     
     UIAttachmentBehavior *springBehavior = [[UIAttachmentBehavior alloc] initWithItem:item attachedToAnchor:item.center];
-    springBehavior.length = 1.0f;
-    springBehavior.damping = 1.0f;
+    springBehavior.length = 0.0f;
+    springBehavior.damping = 0.8f;
     springBehavior.frequency = 1.0f;
     return springBehavior;
 }

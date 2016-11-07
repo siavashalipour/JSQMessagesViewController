@@ -59,6 +59,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIImage *)jsq_bubbleCompactImage;
 
 /**
+ *  @return sichi message bubble.
+ */
++ (UIImage *)sichiBubble;
+
+/**
  *  @return The compact message bubble image without a tail.
  */
 + (UIImage *)jsq_bubbleCompactTaillessImage;

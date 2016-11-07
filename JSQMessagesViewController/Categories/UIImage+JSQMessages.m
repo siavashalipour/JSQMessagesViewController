@@ -74,7 +74,10 @@
 {
     return [UIImage jsq_bubbleImageFromBundleWithName:@"bubble_stroked_tailless"];
 }
-
++ (UIImage *)sichiBubble
+{
+    return [UIImage jsq_bubbleImageFromBundleWithName:@"sichiBubble"];
+}
 + (UIImage *)jsq_bubbleCompactImage
 {
     return [UIImage jsq_bubbleImageFromBundleWithName:@"bubble_min"];

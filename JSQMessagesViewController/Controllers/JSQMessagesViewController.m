@@ -535,7 +535,7 @@ static void JSQInstallWorkaroundForSheetPresentationIssue26295020(void) {
     else if (!isOutgoingMessage && CGSizeEqualToSize(collectionView.collectionViewLayout.incomingAvatarViewSize, CGSizeZero)) {
         needsAvatar = NO;
     }
-
+    cell.textView.textColor = isOutgoingMessage ? [UIColor whiteColor]:[UIColor blackColor];
     id<JSQMessageAvatarImageDataSource> avatarImageDataSource = nil;
     if (needsAvatar) {
         avatarImageDataSource = [collectionView.dataSource collectionView:collectionView avatarImageDataForItemAtIndexPath:indexPath];
