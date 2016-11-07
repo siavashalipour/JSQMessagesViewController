@@ -43,11 +43,11 @@ FOUNDATION_EXPORT const CGFloat kJSQMessagesCollectionViewAvatarSizeDefault;
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- *  The `JSQMessagesCollectionViewFlowLayout` is a concrete layout object that inherits 
+ *  The `JSQMessagesCollectionViewFlowLayout` is a concrete layout object that inherits
  *  from `UICollectionViewFlowLayout` and organizes message items in a vertical list.
- *  Each `JSQMessagesCollectionViewCell` in the layout can display messages of arbitrary sizes and avatar images, 
+ *  Each `JSQMessagesCollectionViewCell` in the layout can display messages of arbitrary sizes and avatar images,
  *  as well as metadata such as a timestamp and sender.
- *  You can easily customize the layout via its properties or its delegate methods 
+ *  You can easily customize the layout via its properties or its delegate methods
  *  defined in `JSQMessagesCollectionViewDelegateFlowLayout`.
  *
  *  @see JSQMessagesCollectionViewDelegateFlowLayout.
@@ -74,7 +74,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  Specifies whether or not the layout should enable spring behavior dynamics for its items using `UIDynamics`.
  *
- *  @discussion The default value is `NO`, which disables "springy" or "bouncy" items in the layout. 
+ *  @discussion The default value is `NO`, which disables "springy" or "bouncy" items in the layout.
  *  Set to `YES` if you want items to have spring behavior dynamics. You *must* set this property from `viewDidAppear:`
  *  in your `JSQMessagesViewController` subclass.
  *
@@ -83,10 +83,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, nonatomic) BOOL springinessEnabled;
 
 /**
- *  Specifies the degree of resistence for the "springiness" of items in the layout. 
+ *  Specifies the degree of resistence for the "springiness" of items in the layout.
  *  This property has no effect if `springinessEnabled` is set to `NO`.
  *
- *  @discussion The default value is `1000`. Increasing this value increases the resistance, that is, items become less "bouncy". 
+ *  @discussion The default value is `1000`. Increasing this value increases the resistance, that is, items become less "bouncy".
  *  Decrease this value in order to make items more "bouncy".
  */
 @property (assign, nonatomic) NSUInteger springResistanceFactor;
@@ -97,16 +97,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly, nonatomic) CGFloat itemWidth;
 
 /**
- *  The font used to display the body a text message in the message bubble of each 
- *  `JSQMessagesCollectionViewCell` in the collectionView. 
- *  
+ *  The font used to display the body a text message in the message bubble of each
+ *  `JSQMessagesCollectionViewCell` in the collectionView.
+ *
  *  @discussion The default value is the preferred system font for `UIFontTextStyleBody`. This value must not be `nil`.
  */
 @property (strong, nonatomic) UIFont *messageBubbleFont;
-/**
- * This hides the bubble for Emojis and also tells the container to remove the shadow for emojis
- */
 @property (assign, nonatomic) BOOL hideBubble;
+
 /**
  *  The horizontal spacing used to lay out the `messageBubbleContainerView` frame within each `JSQMessagesCollectionViewCell`.
  *  This container view holds the message bubble image and message contents of a cell.
@@ -115,13 +113,13 @@ NS_ASSUME_NONNULL_BEGIN
  *  the edge of the collection view cell in which it is displayed. That is, the edge that is opposite the avatar image.
  *
  *  @discussion The default value is `40.0f` on iPhone and `240.0f` on iPad. This value must be positive.
- *  For *outgoing* messages, this value specifies the amount of spacing from the left most 
+ *  For *outgoing* messages, this value specifies the amount of spacing from the left most
  *  edge of the collectionView to the left most edge of a message bubble within a cell.
  *
- *  For *incoming* messages, this value specifies the amount of spacing from the right most 
+ *  For *incoming* messages, this value specifies the amount of spacing from the right most
  *  edge of the collectionView to the right most edge of a message bubble within a cell.
  *
- *  @warning This value may not be exact when the layout object finishes laying out its items, due to the constraints it must satisfy. 
+ *  @warning This value may not be exact when the layout object finishes laying out its items, due to the constraints it must satisfy.
  *  This value should be considered more of a recommendation or suggestion to the layout, not an exact value.
  *
  *  @see JSQMessagesCollectionViewCellIncoming.
@@ -132,13 +130,13 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  The inset of the frame of the text view within the `messageBubbleContainerView` of each `JSQMessagesCollectionViewCell`.
  *  The inset values should be positive and are applied in the following ways:
- *  
- *  1. The right value insets the text view frame on the side adjacent to the avatar image 
- *      (or where the avatar would normally appear). For outgoing messages this is the right side, 
+ *
+ *  1. The right value insets the text view frame on the side adjacent to the avatar image
+ *      (or where the avatar would normally appear). For outgoing messages this is the right side,
  *      for incoming messages this is the left side.
  *
- *  2. The left value insets the text view frame on the side opposite the avatar image 
- *      (or where the avatar would normally appear). For outgoing messages this is the left side, 
+ *  2. The left value insets the text view frame on the side opposite the avatar image
+ *      (or where the avatar would normally appear). For outgoing messages this is the left side,
  *      for incoming messages this is the right side.
  *
  *  3. The top value insets the top of the frame.
@@ -147,20 +145,20 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @discussion The default value is `{0.0f, 0.0f, 0.0f, 6.0f}`.
  *
- *  @warning Adjusting this value is an advanced endeavour and not recommended. 
+ *  @warning Adjusting this value is an advanced endeavour and not recommended.
  *  You will only need to adjust this value should you choose to provide your own bubble image assets.
- *  Changing this value may also require you to manually calculate the itemSize for each cell 
+ *  Changing this value may also require you to manually calculate the itemSize for each cell
  *  in the layout by overriding the delegate method `collectionView:layout:sizeForItemAtIndexPath:`
  */
 @property (assign, nonatomic) UIEdgeInsets messageBubbleTextViewFrameInsets;
 
 /**
- *  The inset of the text container's layout area within the text view's content area in each `JSQMessagesCollectionViewCell`. 
+ *  The inset of the text container's layout area within the text view's content area in each `JSQMessagesCollectionViewCell`.
  *  The specified inset values should be positive.
  *
  *  @discussion The default value is `{7.0f, 14.0f, 7.0f, 14.0f}`.
  *
- *  @warning Adjusting this value is an advanced endeavour and not recommended. 
+ *  @warning Adjusting this value is an advanced endeavour and not recommended.
  *  You will only need to adjust this value should you choose to provide your own bubble image assets.
  *  Changing this value may also require you to manually calculate the itemSize for each cell
  *  in the layout by overriding the delegate method `collectionView:layout:sizeForItemAtIndexPath:`

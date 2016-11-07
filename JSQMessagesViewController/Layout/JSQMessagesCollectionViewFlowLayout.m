@@ -33,7 +33,7 @@
 #import "JSQMessagesBubblesSizeCalculator.h"
 
 #import "UIImage+JSQMessages.h"
-#import "JSQMessagesViewController-Swift.h"
+#import "JSQMessages-Swift.h"
 
 const CGFloat kJSQMessagesCollectionViewCellLabelHeightDefault = 20.0f;
 const CGFloat kJSQMessagesCollectionViewAvatarSizeDefault = 30.0f;

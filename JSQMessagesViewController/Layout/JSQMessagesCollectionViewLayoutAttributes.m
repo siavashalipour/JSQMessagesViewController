@@ -44,7 +44,10 @@
     NSParameterAssert(messageBubbleContainerViewWidth > 0.0f);
     _messageBubbleContainerViewWidth = ceilf(messageBubbleContainerViewWidth);
 }
-
+- (void)setHideBubble:(BOOL)hideBubble {
+    _hideBubble = hideBubble;
+    
+}
 - (void)setIncomingAvatarViewSize:(CGSize)incomingAvatarViewSize
 {
     NSParameterAssert(incomingAvatarViewSize.width >= 0.0f && incomingAvatarViewSize.height >= 0.0f);
@@ -134,6 +137,7 @@
     }
     
     copy.messageBubbleFont = self.messageBubbleFont;
+    copy.hideBubble = self.hideBubble;
     copy.messageBubbleContainerViewWidth = self.messageBubbleContainerViewWidth;
     copy.textViewFrameInsets = self.textViewFrameInsets;
     copy.textViewTextContainerInsets = self.textViewTextContainerInsets;
